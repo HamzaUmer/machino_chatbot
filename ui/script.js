@@ -23,7 +23,7 @@ function sendMessage() {
         chatBody.scrollTop = chatBody.scrollHeight;
 
         // Send the user's message to the API
-        fetch('http://127.0.0.1:5000/qna/chatbot', {
+        fetch('https://machino-web-chatbot-f2ce8dd78424.herokuapp.com/qna/chatbot', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
