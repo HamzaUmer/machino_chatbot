@@ -1,7 +1,6 @@
 from flask_restx import Namespace, Resource, reqparse
 from flask import Flask, request, jsonify, make_response
 import os
-import apis.config
 from langchain_community.vectorstores import MongoDBAtlasVectorSearch
 from langchain_openai import OpenAIEmbeddings, OpenAI
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -11,8 +10,8 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 
 api = Namespace('qna', description='Machinoweb docs stored and retrieved using mongoDB')
-os.environ["OPENAI_API_KEY"] = apis.config.open_ai_api_key
-MONGODB_ATLAS_CLUSTER_URI = apis.config.mongo_uri
+os.environ["OPENAI_API_KEY"] = os.environ.get("open_ai_api_key")
+MONGODB_ATLAS_CLUSTER_URI = os.environ.get("mongo_uri")
 client = MongoClient(MONGODB_ATLAS_CLUSTER_URI)
 
 DB_NAME = "machino"
